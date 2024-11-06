@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="description" content="Turtles Advanced">
-		<meta name="keywords" content="HTML5,canvas,JavaScript,turtles,advanced,game">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Turtles Advanced">
+    <meta name="keywords" content="HTML5,canvas,JavaScript,turtles,advanced,game">
     <style>
       body,html{
         background: #000;
@@ -29,9 +29,9 @@
         border-radius:5px;
       }
     </style>
-	</head>
-	<body>
-		<button id="button" onclick="toggleControls()">Show Controls</button>
+  </head>
+  <body>
+    <button id="button" onclick="toggleControls()">Show Controls</button>
     <canvas id="canvas"></canvas>
     <script>
       canvas = document.querySelector('#canvas')
@@ -116,7 +116,7 @@
       }
 
       function Slider(x,y,min,max,value,title){
-        
+
         this.x=x, this.y=y, this.min=min, this.max=max, this.value=value, this.title=title;
         this.hover=0;
       }
@@ -126,7 +126,7 @@
       }
 
       function loadControlPoints(){
-        
+
         points=25;
         controls=new Array(points);
         for(i=0;i<points;++i){
@@ -139,7 +139,7 @@
       }
 
       function loadTerrain(){
-        
+
         terrain=new Array(cols);
         max=0;
         for(i=0;i<cols;++i){
@@ -181,19 +181,19 @@
             downleft=terrain[l][d];
             c=parseInt(cell.color*15);
             cell.differentNeighbors=(c!=parseInt(up.color*15)?1:0)+
-                          (c!=parseInt(down.color*15)?1:0)+
-                          (c!=parseInt(left.color*15)?1:0)+
-                          (c!=parseInt(right.color*15)?1:0)+
-                          (c!=parseInt(upleft.color*15)?1:0)+
-                          (c!=parseInt(upright.color*15)?1:0)+
-                          (c!=parseInt(downleft.color*15)?1:0)+
-                          (c!=parseInt(downright.color*15)?1:0);
+              (c!=parseInt(down.color*15)?1:0)+
+              (c!=parseInt(left.color*15)?1:0)+
+              (c!=parseInt(right.color*15)?1:0)+
+              (c!=parseInt(upleft.color*15)?1:0)+
+              (c!=parseInt(upright.color*15)?1:0)+
+              (c!=parseInt(downleft.color*15)?1:0)+
+              (c!=parseInt(downright.color*15)?1:0);
           }
         }
       }
 
       function mouse(e) {
-        
+
         var rect = canvas.getBoundingClientRect();
         mx = Math.round((e.clientX-rect.left)/(rect.right-rect.left)*canvas.width);
         my = Math.round((e.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height);
@@ -266,7 +266,7 @@
             }
           }
         }
-        
+
         if(turtles.length){
           if(rand()<.01+foodFreq-.2){
             weight=10+rand()*20;
@@ -369,7 +369,7 @@
           }
           if(i>maxPop)turtles.splice(i,1);
         }
-        
+
         if(showControls){		
           for(i=0;i<sliders.length;++i){
             if(mx>sliders[i].x&&mx<sliders[i].x+100&&my>sliders[i].y&&my<sliders[i].y+300){
@@ -377,7 +377,7 @@
               y=sliders[i].y+35+225/(sliders[i].max-sliders[i].min)*(sliders[i].value-sliders[i].min);
               if(mx>x&&mx<x+50&&my>y&&my<y+20){
               }
-                sliders[i].hover=1;
+              sliders[i].hover=1;
             }else{
               sliders[i].hover=0;
             }
@@ -412,14 +412,14 @@
       }
 
       function interpolateColors(RGB1,RGB2,degree){
-        
+
         w1=degree;
         w2=1-w1;
         return colorString([w1*RGB1[0]+w2*RGB2[0],w1*RGB1[1]+w2*RGB2[1],w1*RGB1[2]+w2*RGB2[2]]);
       }
 
       function rgb(col){
-        
+
         col+=.000001;
         var r = parseInt((.5+Math.sin(col)*.5)*16);
         var g = parseInt((.5+Math.cos(col)*.5)*16);
@@ -428,7 +428,7 @@
       }
 
       function drawSlider(slider){
-        
+
         ctx.strokeStyle="#8ff";
         ctx.globalAlpha=.75;
         ctx.fillStyle="#242";
@@ -466,7 +466,7 @@
         ctx.strokeStyle=slider.hover?"#fff":"#000";
         ctx.strokeRect(slider.x+30,slider.y+35+225/(slider.max-slider.min)*(slider.value-slider.min),50,20);
       }
-      
+
       function draw(){
 
         ctx.closePath();
@@ -474,7 +474,7 @@
         ctx.globalAlpha=1/(1+trails);
         ctx.fillStyle="#000";
         ctx.fillRect(0,0,cx*2,cy*2);
-        
+
         for(i=0;i<cols;++i){
           for(j=0;j<rows;++j){
             if(parseInt(terrain[i][j].color*15)==2){
@@ -499,7 +499,7 @@
             ctx.lineTo(food[i].x2,food[i].y2);
             ctx.stroke();
           }
-          
+
           for(i=0;i<turtles.length;++i){
             ctx.lineWidth=1+turtles[i].size/20;
             ctx.strokeStyle=interpolateColors([0,1,0],[1,0,0],turtles[i].health);
@@ -532,7 +532,7 @@
       }
 
       function toggleControls(){
-        
+
         showControls=!showControls
         if(showControls){
           document.querySelector('#button').innerHTML = 'Hide Controls'
@@ -547,7 +547,7 @@
       }
 
       function setupBoard(){
-        
+
         for(i=0;i<initialFood;++i){
           weight=10+rand()*30;
           x1=100+rand()*(cx*2-200);
